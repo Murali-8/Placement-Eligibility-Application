@@ -1,0 +1,7 @@
+pandas
+Faker
+random
+mysql-connector-python
+streamlit
+streamlit_option_menu
+os
