@@ -199,9 +199,11 @@ elif selected == "Data Insights":
         result = cursor.fetchone()
         st.write("How Many Students Have Cleared More Than 3 Interview Rounds is ", result)
 
-    elif selected_question == "10.Placement Success based on the problems solved.":
+    elif selected_question == "10.Average number of problems solved by placed and not placed students.":
         query ="""SELECT 
-                    CASE WHEN p.placement_status = 'Placed' THEN 'Placed' ELSE 'Not Placed' END AS placement_status,
+                    CASE WHEN p.placement_status = 'Placed' THEN 'Placed' 
+                         WHEN p.placement_status = 'Not Ready'THEN 'Not Placed' 
+                         Else 'Ready' END AS placement_status,
                     AVG(pr.problems_solved) AS avg_problems_solved
                 FROM programming_table pr
                 JOIN placement_table p ON pr.student_id = p.student_id
@@ -209,7 +211,7 @@ elif selected == "Data Insights":
         cursor.execute(query)
         result = cursor.fetchall()
         df = pd.DataFrame(result, columns=['Placement Status', 'Average Problems Solved'])
-        st.write("Placement Success based on the problems solved is ", df)
+        st.write("Average number of problems solved by placed and not placed students is ", df)
 
 
 elif selected == "Read Your Data":
