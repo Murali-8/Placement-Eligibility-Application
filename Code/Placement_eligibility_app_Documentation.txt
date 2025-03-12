@@ -1,0 +1,124 @@
+Placement Eligibility System - Project Documentation
+1. Introduction
+The Placement Eligibility System is a Streamlit web application that helps HR teams select students for placement based on specific criteria such as attendance, programming skills, project scores, and certifications. The system integrates a MySQL database to store and manage student data, and it uses Pandas and Faker to generate sample data.
+
+2. Features
+User Authentication: HRs can log in to access the system.
+Eligibility Criteria Selection: HRs can define the minimum qualifications for placements.
+Data Insights: View and analyze student data for better decision-making.
+Read & Manage Data: Fetch and display student records from the database.
+3. Tech Stack
+Frontend: Streamlit (Python-based UI)
+Backend: Python (with MySQL Database)
+Database: MySQL
+Libraries Used:
+pandas: Data manipulation
+mysql.connector: MySQL connectivity
+faker: Generating synthetic data
+random: Randomization for test data
+streamlit: Web-based interface
+streamlit_option_menu: Sidebar navigation
+4. Database Schema
+The system has four main tables:
+
+Students_table
+
+Column	Data Type
+student_id	INT (Primary Key)
+name	VARCHAR(200)
+age	INT
+gender	VARCHAR(200)
+email	VARCHAR(200)
+phone	VARCHAR(200)
+enrollment_year	INT
+course_batch	VARCHAR(200)
+city	VARCHAR(200)
+graduation_year	INT
+Programming_table
+
+Column	Data Type
+programming_id	INT (Primary Key)
+student_id	INT (Foreign Key)
+language	VARCHAR(200)
+problems_solved	INT
+assessments_completed	INT
+mini_projects	INT
+certifications_earned	INT
+latest_project_score	INT
+Softskills_table
+
+Column	Data Type
+soft_skill_id	INT (Primary Key)
+student_id	INT (Foreign Key)
+communication	INT
+teamwork	INT
+presentation	INT
+leadership	INT
+critical_thinking	INT
+interpersonal_skills	INT
+Placement_table
+
+Column	Data Type
+placement_id	INT (Primary Key)
+student_id	INT (Foreign Key)
+attendance_percentage	INT
+mock_interview_score	INT
+internships_completed	INT
+placement_status	VARCHAR(200)
+company_name	VARCHAR(200)
+placement_package	VARCHAR(200)
+interview_rounds_cleared	INT
+placement_date	DATE
+5. Application Flow
+Data Generation & Storage
+
+The faker library generates 500 student records.
+Data is stored in a MySQL database using Python’s MySQL connector.
+Web Application (Streamlit)
+
+A sidebar navigation menu with:
+Home: Displays welcome screen & login form.
+Eligibility Criteria: HRs input the minimum placement criteria.
+Data Insights: Visualizations & summary statistics.
+Read Your Data: Fetch student data from the database.
+Eligibility Criteria Processing
+
+Users input:
+Minimum attendance
+Minimum coding problems solved
+Number of certifications
+Mini projects completed
+Final project score
+The app queries the database and filters eligible students.
+6. Installation & Setup
+Prerequisites
+Install Python (3.x)
+Install MySQL Server
+Install required Python libraries:
+bash
+Copy
+Edit
+pip install pandas faker mysql-connector-python streamlit streamlit-option-menu
+Run the Application
+Start the MySQL server and create a database:
+
+sql
+Copy
+Edit
+CREATE DATABASE placement_eligibility_system;
+Run the Python script to populate the database:
+
+bash
+Copy
+Edit
+python App_file.py
+Start the Streamlit app:
+
+bash
+Copy
+Edit
+streamlit run Streamlit_con_app.py
+7. Future Enhancements
+Add user authentication with a database for login validation.
+Implement visual analytics (bar charts, pie charts) for insights.
+Add an admin dashboard for better student management.
